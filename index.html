@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>Candidatures </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+</head>
+
+<body>
+<header>
+    <nav class="topNav">
+        <div class="menuFlex">
+            <div class="logo">
+
+            </div>
+            <div class="menu-toggle">
+                <a href="#"><i class="fas fa-bars"></i></a>
+            </div>
+            <div class="menuDeskTop">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="calendar.php ">Calendrier </a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu">
+            <!--Mobile Dropdown Menu-->
+            <ul>
+                <a href="#">
+                    <li>Home</li>
+                </a>
+                <a href="#">
+                    <li>About</li>
+                </a>
+                <a href="#">
+                    <li>Contact</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container box">
+
+    <h1 align="center">liste des candidatures </h1>
+    <br/>
+    <div class="table-responsive">
+        <br/>
+        <div align="right">
+            <button type="button" name="add" id="add" class="btn btn-info">Ajouter</button>
+        </div>
+        <br/>
+        <div id="alert_message"></div>
+        <table id="user_data" class="table table-bordered table-hover">
+            <thead class="thead-dark ">
+            <tr>
+                <th>Poste</th>
+                <th>Entreprise</th>
+                <th>Ref_annonce</th>
+                <th>Date envoie candidature</th>
+                <th>Methode_relance</th>
+                <th>Date pour relance</th>
+                <th>Email</th>
+                <th>Reponse</th>
+                <th>Date_repon</th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript" src="js/candidature.js"language="javascript">
+
+</script>
