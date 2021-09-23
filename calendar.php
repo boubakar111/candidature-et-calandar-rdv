@@ -42,21 +42,19 @@
         <div class="menu">
             <!--Mobile Dropdown Menu-->
             <ul>
-                <a href="#">
+                <a href="index.html">
                     <li>Home</li>
                 </a>
-                <a href="#">
-                    <li>About</li>
+                <a href="calendar.php ">
+                    <li>Calendrier</li>
                 </a>
-                <a href="#">
-                    <li>Contact</li>
-                </a>
+
             </ul>
         </div>
     </nav>
 </header>
 
-<h2>PHP Calendar Event Management FullCalendar JavaScript Library</h2>
+<h2>PHP Calendar et  JavaScript FullCalendar</h2>
 
 <div class="response"></div>
 <div id='calendar'></div>
