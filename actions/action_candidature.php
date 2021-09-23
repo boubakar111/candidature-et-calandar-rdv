@@ -1,6 +1,8 @@
 <?php
 
-require_once '../libraries/database.php';
+require_once '../models/Candidature.php';
+
+$candidature = new Candidature();
 
 $action = isset($_POST['action']) ? $_POST['action'] : "";
 //var_dump( $action);die();
@@ -17,7 +19,7 @@ switch ($action) {
             $email = $_POST["Email"];
             $reponse = $_POST["Reponse"];
             $date_reponse = $_POST["Date_reponse"];
-            $result = add_candidature($poste, $entreprise, $ref_ann, $Date_cand, $methode_rel, $date_rel, $email, $reponse, $date_reponse);
+            $result = $candidature->add_candidature($poste, $entreprise, $ref_ann, $Date_cand, $methode_rel, $date_rel, $email, $reponse, $date_reponse);
             if ($result == true) {
                 echo 'Candidature bien enregistré ';
             }
@@ -29,7 +31,7 @@ switch ($action) {
             $id = $_POST["id"];
             $value = $_POST["value"];
             $column_name = $_POST["column_name"];
-            $result = update_candidature($column_name, $value, $id);
+            $result = $candidature->update_candidature($column_name, $value, $id);
 
             if ($result == true) {
                 echo 'votre modification à bien été prise en compte ';
@@ -41,7 +43,7 @@ switch ($action) {
 
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
-            $result = delete_candidature($id);
+            $result = $candidature->delete_candidature($id);
             if ($result == true) {
                 echo 'votre candidature à bien été supprimé';
             }
@@ -52,32 +54,7 @@ switch ($action) {
         $pdo = getPDO();
         $columns = array('Poste', 'Entreprise', 'Ref_ann_site', 'Date_candidature', 'Methode_relance', 'Date_relance', 'email_contact', 'reponse', 'Date_reponse');
 
-        $query = "SELECT * FROM Candidatures ";
-
-        if (isset($_POST["search"]["value"])) {
-            $query .= ' WHERE entreprise LIKE "%' . $_POST["search"]["value"] . '%" 
-                   OR ref_ann_site LIKE "%' . $_POST["search"]["value"] . '%" 
-                   OR date_candidature LIKE "%' . $_POST["search"]["value"] . '%"';
-        }
-
-        if (isset($_POST["order"])) {
-            $query .= 'ORDER BY ' . $columns[$_POST['order']['0']['column']] . ' ' . $_POST['order']['0']['dir'] . ' 
-        ';
-        } else {
-            $query .= 'ORDER BY date_candidature DESC ';
-        }
-
-        $query1 = '';
-
-        if ($_POST["length"] != -1) {
-            $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
-        }
-
-        $number_filter_row = $pdo->prepare($query);
-
-        $result = $pdo->prepare($query . $query1);
-
-        $result->execute();
+        $result = $candidature->fetch_all_candidature($columns);
 
         $data = array();
         $now = date('Y-m-d');
@@ -95,7 +72,7 @@ switch ($action) {
             return $result;
         }
 
-        while ($row = $result->fetch()) {
+       foreach( $result as $row) {
             $sub_array = array();
             $sub_array[] = '<div contenteditable class="update" data-id="' . $row["id"] . '" data-column="poste">' . $row["poste"] . '</div>';
             $sub_array[] = '<div contenteditable class="update" data-id="' . $row["id"] . '" data-column="entreprise">' . $row["entreprise"] . '</div>';
@@ -111,27 +88,9 @@ switch ($action) {
             $data[] = $sub_array;
         }
 
-        function get_all_data($pdo)
-        {
-            $pdo = getPDO();
-            $query = "SELECT * FROM Candidatures";
-            $stm = $pdo->prepare($query);
-            $result = $stm->execute();
-            return $result;
-        }
-
-        function def_date_relance($pdo)
-        {
-            $query = "SELECT date_candidature FROM Candidature";
-            $stm = $pdo->prepare($query);
-            $result = $stm->excute();
-            return $result;
-        }
-
         $output = array(
             "draw" => intval($_POST["draw"]),
-            "recordsTotal" => get_all_data($pdo),
-            "recordsFiltered" => $number_filter_row,
+            "recordsTotal" => $candidature->get_all_data(),
             "data" => $data
         );
 

@@ -8,7 +8,7 @@ $(document).ready(function () {
             "serverSide": true,
             "order": [],
             "ajax": {
-                url: "candidature/action_candidature.php",
+                url: "actions/action_candidature.php",
                 type: "POST",
                 data:{
                     action:4,
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     function update_data(id, column_name, value) {
         $.ajax({
-            url: "candidature/action_candidature.php",
+            url: "actions/action_candidature.php",
             method: "POST",
             data: {
                 id: id,
@@ -72,7 +72,7 @@ $(document).ready(function () {
         var Date_reponse = $('#data9').text();
         if (Poste != '' && Entreprise != '' && Ref_ann != '') {
             $.ajax({
-                url: "candidature/action_candidature.php",
+                url: "actions/action_candidature.php",
                 method: "POST",
                 data: {
                     Poste: Poste,
@@ -103,7 +103,7 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         if (confirm("Êtes-vous sûr de vouloir supprimer cette candidature ?")) {
             $.ajax({
-                url: "candidature/action_candidature.php",
+                url: "actions/action_candidature.php",
                 method: "POST",
                 data: {
                     id: id,

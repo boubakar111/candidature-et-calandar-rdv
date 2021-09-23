@@ -14,6 +14,6 @@ $result = mysqli_fetch_all( $result);
 "id";"titre annaonce"; "entreprise";"date candiature";
 <?php
 foreach($result as $res){
-    echo "\n" . "'utf8_decode $res->id'"; "' $res"' ;
+
 }
 ?>
