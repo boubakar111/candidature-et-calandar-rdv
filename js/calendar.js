@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //fetch_event
     var calendar = $('#calendar').fullCalendar({
-        editable:true,
+        editable:false,
         events: "actions/action_event.php",
         displayEventTime: true,
         eventRender: function (event, element, view) {

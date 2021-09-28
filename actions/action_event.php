@@ -31,11 +31,12 @@ switch ($action) {
         //pour modifier un evenement
         $id = $_POST['id'];
 
-        $calandar->delete_event($id);
+        $calandar->delete($id);
 
         break;
     case '':
-        $calandar->fetch_all_event();
+        $result  = $calandar->fetch_all_data();
+        echo  $result;
         break;
 }
 

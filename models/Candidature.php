@@ -3,6 +3,9 @@ require_once 'Model.php';
 
 class Candidature extends Model
 {
+
+    protected  $table = "candidatures";
+
     /**
      * inster candidature
      * @param $poste
@@ -39,20 +42,6 @@ class Candidature extends Model
     {
 
         $query = "UPDATE candidatures SET " . $column_name . "='" . $value . "' WHERE id = '" . $id . "'";
-        $stm = $this->pdo->prepare($query);
-        $stm->execute();
-        return true;
-    }
-
-    /**
-     * delete candidature
-     * @param $id
-     * @return bool
-     */
-    function delete_candidature($id)
-    {
-
-        $query = "DELETE FROM candidatures WHERE id = " . $id;
         $stm = $this->pdo->prepare($query);
         $stm->execute();
         return true;
@@ -97,16 +86,5 @@ class Candidature extends Model
 
     }
 
-    /**
-     * @return bool
-     */
-   public  function get_all_data()
-    {
-
-        $query = "SELECT * FROM Candidatures";
-        $stm = $this->pdo->prepare($query);
-        $result = $stm->execute();
-        return $result;
-    }
 
 }

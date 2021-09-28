@@ -6,15 +6,14 @@ require_once 'Model.php';
 class Calandar extends Model
 {
 
-    function fetch_all_event()
-    {
+    protected  $table = "tbl_events";
 
-        $sqlQuery = "SELECT * FROM tbl_events ORDER BY id";
-        $result = $this->pdo->query($sqlQuery);
-        $eventArray = $result->fetchAll();
-        echo json_encode($eventArray);
-    }
-
+    /**
+     * ajouter un rendez-vous
+     * @param $title
+     * @param $start
+     * @param $end
+     */
     function add_event($title, $start, $end)
     {
 
@@ -36,14 +35,5 @@ class Calandar extends Model
 
     }
 
-    function delete_event($id)
-    {
-
-        $sqlDelete = "DELETE from tbl_events WHERE id=" . $id;
-        $result = $this->pdo->prepare($sqlDelete);
-        $result->execute();
-
-        return true;
-    }
 
 }

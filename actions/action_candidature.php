@@ -43,7 +43,7 @@ switch ($action) {
 
         if (isset($_POST["id"])) {
             $id = $_POST["id"];
-            $result = $candidature->delete_candidature($id);
+            $result = $candidature->delete($id);
             if ($result == true) {
                 echo 'votre candidature à bien été supprimé';
             }
@@ -90,7 +90,7 @@ switch ($action) {
 
         $output = array(
             "draw" => intval($_POST["draw"]),
-            "recordsTotal" => $candidature->get_all_data(),
+            "recordsTotal" => $candidature->fetch_all_data( "date_candidature"),
             "data" => $data
         );
 
